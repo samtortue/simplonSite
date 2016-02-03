@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>plop</title>
+  </head>
+  <body onload="aleatoire(fileProfiles)">
+
+    <script>
+
+
+// ----------------------------------------------------------------------------- variables globales
+    var fileProfiles = ["green", "purple", "yellow", "red", "blue", "black"];
+    var profileNumber = fileProfiles.length;
+    var profileRandom = [];
+
+// ---------------------------------------------------------------------------- Partie de la fonction qui génère le random des divs
+    function aleatoire(){
+
+    while(profileNumber > 0){
+      indexRand = Math.floor(Math.random() * profileNumber); // --------- Index random de fileProfiles
+      profileRetire = fileProfiles.splice(indexRand, 1); // ------------------- On retire au hasard un profil du tableau
+      console.log("indexRand: "+indexRand+" // profileRetire[0]: "+profileRetire[0]);
+      profileRandom.push(profileRetire[0]); //------------------------------------ On pousse le profilRetire dans le tableauDivM
+      profileNumber--;
+    }
+
+    console.log(profileRandom);
+// ----------------------------------------------------------------------------- Partie de la fonction qui gère la création des div onload
+    var divProfile;
+
+      for(i=0; i<6; i++){
+        divProfile = document.createElement("div"); //-------------------------- Création des div profil
+        divProfile.style.height = "70px";
+        divProfile.style.width = "70px";
+        divProfile.style.background = profileRandom[i];
+        // divProfile.innerHtml = profileRandom[i]; ---------------------------- on va afficher les infos du profil de façon aléatoire
+        document.body.appendChild(divProfile);
+      }
+
+    }
+
+    </script>
+
+
+  </body>
+</html>
